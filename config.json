@@ -5,5 +5,9 @@
     "x-rapidapi-host": "twitter154.p.rapidapi.com"
   },
   "username": "omarmhaimdat",
-  "user_id": "96479162"
+  "username_post": "bahaa",
+  "user_id": "96479162",
+  "user_id_post": "2122431",
+  "end_url_details" : "user/details",
+  "end_url_tweets" : "user/tweets"
 }
