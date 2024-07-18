@@ -5,7 +5,7 @@ from infra.browser.configure_provider import ConfigProvider
 from logic.api.user_details import UserDetails
 
 
-class TestAPIShuffleCard(unittest.TestCase):
+class TestAPIUserDetails(unittest.TestCase):
 
     def setUp(self):
         """
@@ -29,4 +29,3 @@ class TestAPIShuffleCard(unittest.TestCase):
         self.assertTrue(user.ok)
         self.assertEqual(user_body['username'], self.username)
         self.assertEqual(user_body['user_id'], self.user_id)
-
