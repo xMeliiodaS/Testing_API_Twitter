@@ -23,7 +23,6 @@ class TestAPIUserDetails(unittest.TestCase):
         user_details = APIUserDetails(self.api_request)
         user = user_details.get_user_details()
         user_body = user.json()
-        print(user_body)
 
         self.assertTrue(user.ok)
         self.assertEqual(user_body['username'], self.config["username"])
@@ -41,5 +40,4 @@ class TestAPIUserDetails(unittest.TestCase):
 
         self.assertTrue(user_response.ok)
         self.assertEqual(user_response.status_code, 200)
-        print(user_body)
         self.assertEqual(self.config["username_post"], user_body["username"])
