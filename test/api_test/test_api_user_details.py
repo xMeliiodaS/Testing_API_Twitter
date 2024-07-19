@@ -1,4 +1,3 @@
-import json
 import unittest
 
 from infra.api.api_wrapper import APIWrapper
