@@ -18,8 +18,8 @@ class TestAPIUserTweets(unittest.TestCase):
         """
         Tests the retrieval of user tweets by calling the API and validating the response.
         """
-        user_details = APIUserTweets(self.api_request)
-        response = user_details.get_user_tweets_by_url()
+        user_tweets = APIUserTweets(self.api_request)
+        response = user_tweets.get_user_tweets_by_url()
         response_body = response.json()
 
         self.assertTrue(response.ok)

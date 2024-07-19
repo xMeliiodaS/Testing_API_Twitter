@@ -1,5 +1,8 @@
 {
   "url": "https://twitter154.p.rapidapi.com",
+  "end_url_details": "user/details",
+  "end_url_tweets": "user/tweets",
+  "end_url_followers": "user/followers",
   "header": {
     "x-rapidapi-key": "5c6a077d80msh9ec90f34d973582p1fd27bjsn80025e902241",
     "x-rapidapi-host": "twitter154.p.rapidapi.com"
@@ -8,7 +11,7 @@
   "username_post": "Bahaa",
   "user_id": "96479162",
   "user_id_post": "2122431",
-  "end_url_details" : "user/details",
-  "end_url_tweets" : "user/tweets",
-  "tweet_id" : "1812841571466756304"
+  "tweet_id": "1812841571466756304",
+  "follower_user_id": "876463068653510656",
+  "follower_user_name": "THyasser1"
 }
