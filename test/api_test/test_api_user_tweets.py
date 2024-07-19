@@ -9,12 +9,12 @@ class TestAPIUserTweets(unittest.TestCase):
 
     def setUp(self):
         """
-        Sets up the test environment by loading the configuration and shuffling the deck.
+        Sets up the test environment by initializing APIWrapper and loading configuration.
         """
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
 
-    def test_get_user_details(self):
+    def test_get_user_tweets(self):
         """
         Tests the retrieval of user tweets by calling the API and validating the response.
         """

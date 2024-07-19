@@ -11,14 +11,14 @@ class TestAPIUserDetails(unittest.TestCase):
 
     def setUp(self):
         """
-        Sets up the test environment by loading the configuration and shuffling the deck.
+        Sets up the test environment by initializing APIWrapper and loading configuration.
         """
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
 
     def test_get_user_details(self):
         """
-        Tests the shuffling of the deck by calling the API and validating the response.
+        Tests retrieving user details from the API and validating the response.
         """
         user_details = APIUserDetails(self.api_request)
         user = user_details.get_user_details()
@@ -31,7 +31,7 @@ class TestAPIUserDetails(unittest.TestCase):
 
     def test_post_user_details(self):
         """
-        Tests the shuffling of the deck by calling the API and validating the response.
+        Tests posting user details to the API and validating the response.
         """
         user_details = APIUserDetails(self.api_request)
         user_details_body = UserDetails(self.config["username_post"], self.config["user_id_post"])
