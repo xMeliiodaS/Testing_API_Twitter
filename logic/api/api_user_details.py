@@ -27,5 +27,6 @@ class APIUserDetails:
         Returns:
             Response: The response from the API.
         """
-        return self._request.post_request(f'{self.config["url"]}/user/details', self.config["header"],
+        return self._request.post_request(f'{self.config["url"]}/{self.config["end_url_details"]}'
+                                          , self.config["header"],
                                           user_name_details)

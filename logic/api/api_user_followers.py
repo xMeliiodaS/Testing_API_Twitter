@@ -16,3 +16,7 @@ class APIUserFollowers:
         url = (f"{self.config['url']}/{self.config['end_url_followers']}"
                f"?user_id={self.config['user_id']}&limit=10")
         return self._request.get_request(url, headers=self.config["header"])
+
+    def post_user_followers(self, follower_details):
+        return self._request.post_request(f'{self.config["url"]}/{self.config["end_url_followers"]}',
+                                          self.config["header"], follower_details)

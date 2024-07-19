@@ -1,17 +1,21 @@
 {
+  "header": {
+    "x-rapidapi-key": "5c6a077d80msh9ec90f34d973582p1fd27bjsn80025e902241",
+    "x-rapidapi-host": "twitter154.p.rapidapi.com",
+    "Content-Type": "application/json"
+  },
   "url": "https://twitter154.p.rapidapi.com",
   "end_url_details": "user/details",
   "end_url_tweets": "user/tweets",
   "end_url_followers": "user/followers",
-  "header": {
-    "x-rapidapi-key": "5c6a077d80msh9ec90f34d973582p1fd27bjsn80025e902241",
-    "x-rapidapi-host": "twitter154.p.rapidapi.com"
-  },
   "username": "omarmhaimdat",
-  "username_post": "Bahaa",
   "user_id": "96479162",
+  "username_post": "Bahaa",
   "user_id_post": "2122431",
   "tweet_id": "1812841571466756304",
   "follower_user_id": "876463068653510656",
-  "follower_user_name": "THyasser1"
+  "follower_user_name": "THyasser1",
+  "limit": "10",
+  "post_follower_user_id": "123456987",
+  "post_follower_limit": "15"
 }

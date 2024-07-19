@@ -24,6 +24,7 @@ class TestAPIUserTweets(unittest.TestCase):
 
         self.assertTrue(response.ok)
 
+        # Extract the list of followers from the response body
         first_tweet = response_body["results"][0]
         self.assertIn("tweet_id", first_tweet)
         self.assertEqual(first_tweet["tweet_id"], self.config["tweet_id"])
