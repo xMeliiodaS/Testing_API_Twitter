@@ -16,3 +16,7 @@ class APITweetDetails:
         """
         url = f"{self.config['url']}/tweet/details?tweet_id={self.config['tweet_id']}"
         return self._request.get_request(url, headers=self.config["header"])
+
+    def post_tweet_details(self, follower_details):
+        return self._request.post_request(f'{self.config["url"]}/tweet/details',
+                                          self.config["header"], follower_details)
