@@ -27,7 +27,7 @@ class TestAPITweetDetails(unittest.TestCase):
 
     def test_post_user_media(self):
         """
-        Tests posting translate from the API and validating the response.
+        Tests posting user media from the API and validating the response.
         """
         user_media = UserMedia("96479162", 10)
         api_user_media = APIUserMedia(self.api_request)
