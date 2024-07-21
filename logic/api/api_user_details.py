@@ -16,7 +16,7 @@ class APIUserDetails:
             Response: The response from the API containing user details.
         """
         url = (f"{self.config['url']}/{self.config['end_url_details']}"
-               f"?username={self.config['username']}&user_id={self.config['user_id']}")
+               f"?username={self.config['my_username']}&user_id={self.config['my_user_id']}")
         return self._request.get_request(url, headers=self.config["header"])
 
     def post_user_details(self, user_name_details):

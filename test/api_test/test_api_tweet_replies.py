@@ -22,4 +22,7 @@ class TestAPITweetReplies(unittest.TestCase):
         response = tweet_replies.get_tweet_replies()
         response_body = response.json()
 
-        print(response_body)
+        tweets = response_body["replies"]
+        first_tweet = tweets[0]
+        self.assertTrue(response.ok)
+        self.assertEqual(self.config["tweet_reply_id"], first_tweet["tweet_id"])

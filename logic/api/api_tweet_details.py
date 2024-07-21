@@ -7,14 +7,14 @@ class APITweetDetails:
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_tweet_details(self):
+    def get_tweet_details(self, tweet_id):
         """
         Requests to retrieve tweet details using the configured URL with parameters and headers.
 
         Returns:
             Response: The response from the API containing tweet details.
         """
-        url = f"{self.config['url']}/tweet/details?tweet_id={self.config['tweet_id']}"
+        url = f"{self.config['url']}/tweet/details?tweet_id={tweet_id}"
         return self._request.get_request(url, headers=self.config["header"])
 
     def post_tweet_details(self, follower_details):
