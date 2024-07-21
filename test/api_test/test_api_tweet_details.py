@@ -28,6 +28,8 @@ class TestAPITweetDetails(unittest.TestCase):
         tweet_details = APITweetDetails(self.api_request)
         response = tweet_details.get_tweet_details(tweet_id)
         user_body = response.json()
+
+        # Extract the list of users from the response body
         user = user_body["user"]
 
         self.assertTrue(response.ok)
@@ -42,6 +44,8 @@ class TestAPITweetDetails(unittest.TestCase):
         tweet_details = APITweetDetails(self.api_request)
         response = tweet_details.post_tweet_details(tweet.to_dict())
         user_body = response.json()
+
+        # Extract the list of users from the response body
         user = user_body["user"]
 
         self.assertTrue(response.ok)

@@ -1,8 +1,8 @@
 {
   "header": {
-	"x-rapidapi-key": "0f4a9801e8mshf8288f1c941a30ap1ab6c7jsn7a22122c4c9b",
-	"x-rapidapi-host": "twitter154.p.rapidapi.com",
-	"Content-Type": "application/json"
+    "x-rapidapi-key": "0f4a9801e8mshf8288f1c941a30ap1ab6c7jsn7a22122c4c9b",
+    "x-rapidapi-host": "twitter154.p.rapidapi.com",
+    "Content-Type": "application/json"
   },
   "url": "https://twitter154.p.rapidapi.com",
   "tweet_details_endpoint": "tweet/details",
@@ -11,18 +11,26 @@
   "user_tweets_endpoint": "user/tweets",
   "user_followers_endpoint": "user/followers",
   "user_medias_endpoint": "user/medias",
+  "a": "---------------------------------------------------------------",
   "username": "omarmhaimdat",
   "user_id": "96479162",
   "username_post": "Bahaa",
   "user_id_post": "2122431",
   "tweet_id": "1812841571466756304",
   "follower_user_id": "876463068653510656",
+  "actual_user_id": "335464378",
   "follower_user_name": "THyasser1",
-  "limit": "10",
-  "post_follower_user_id": "123456987",
+  "actual_follower_username": "laytoun",
+  "limit": "5",
   "post_follower_limit": "15",
-  "tweet_reply_id": "1813609881657909579",
+  "tweet_reply_id": "1349129669258448897",
+  "replied_tweet_id": "1349129814628773888",
   "my_username": "ArcanaSpirit",
   "my_user_id": "988716235755081729",
-  "my_tweet_id": "1651463042331230208"
+  "my_tweet_id": "1651463042331230208",
+  "my_first_tweet_id": "1814982968110194714",
+  "my_follower_id": "1758467543688192000",
+  "my_follower_username": "Chloe_kiim",
+  "include_replies": false,
+  "include_pinned": false
 }

@@ -14,15 +14,16 @@ class TestAPITweetReplies(unittest.TestCase):
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
 
-    def test_get_tweet_details(self):
+    def test_get_tweet_replies(self):
         """
         Tests retrieving tweet details from the API and validating the response.
         """
         tweet_replies = APITweetReplies(self.api_request)
-        response = tweet_replies.get_tweet_replies()
+        response = tweet_replies.get_tweet_replies(self.config["tweet_reply_id"])
         response_body = response.json()
 
+        # Extract the list of tweets from the response body
         tweets = response_body["replies"]
         first_tweet = tweets[0]
         self.assertTrue(response.ok)
-        self.assertEqual(self.config["tweet_reply_id"], first_tweet["tweet_id"])
+        self.assertEqual(self.config["replied_tweet_id"], first_tweet["tweet_id"])

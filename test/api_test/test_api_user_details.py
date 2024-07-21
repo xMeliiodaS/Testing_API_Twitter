@@ -20,7 +20,7 @@ class TestAPIUserDetails(unittest.TestCase):
         Tests retrieving user details from the API and validating the response.
         """
         user_details = APIUserDetails(self.api_request)
-        user = user_details.get_user_details()
+        user = user_details.get_user_details(self.config["my_username"], self.config["my_user_id"])
         user_body = user.json()
 
         self.assertTrue(user.ok)

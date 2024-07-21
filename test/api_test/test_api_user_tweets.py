@@ -19,7 +19,11 @@ class TestAPIUserTweets(unittest.TestCase):
         Tests the retrieval of user tweets by calling the API and validating the response.
         """
         user_tweets = APIUserTweets(self.api_request)
-        response = user_tweets.get_user_tweets_by_url()
+        response = user_tweets.get_user_tweets_by_url(self.config["my_username"],
+                                                      self.config["limit"],
+                                                      self.config["my_user_id"],
+                                                      self.config["include_replies"],
+                                                      self.config["include_pinned"])
         response_body = response.json()
 
         self.assertTrue(response.ok)
@@ -27,8 +31,8 @@ class TestAPIUserTweets(unittest.TestCase):
         # Extract the list of followers from the response body
         first_tweet = response_body["results"][0]
         self.assertIn("tweet_id", first_tweet)
-        self.assertEqual(first_tweet["tweet_id"], self.config["tweet_id"])
+        self.assertEqual(first_tweet["tweet_id"], self.config["my_first_tweet_id"])
 
-        # Check the structure of the user object in the first tweet
+        # Extract the list of users from the first tweet
         user_info = first_tweet["user"]
-        self.assertEqual(user_info["username"], self.config["username"])
+        self.assertEqual(user_info["username"], self.config["my_username"])
