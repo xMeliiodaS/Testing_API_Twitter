@@ -42,3 +42,4 @@ class TestAPIUserFollowers(unittest.TestCase):
         followers = response_body["results"]
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_follower_id"], followers[0]["user_id"])
+        self.assertEqual(self.config["my_follower_username"], followers[0]["username"])
