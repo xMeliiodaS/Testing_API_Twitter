@@ -16,7 +16,7 @@ class TestAPIUserFollowers(unittest.TestCase):
         self.config = ConfigProvider.load_config_json()
         self.user_details = APIUserFollowers(self.api_request)
 
-    def test_get_user_followers(self):
+    def test_user_followers_by_url(self):
         """
         Tests getting user followers to the API and validating the responses.
         """
@@ -29,9 +29,9 @@ class TestAPIUserFollowers(unittest.TestCase):
         self.assertEqual(followers[1]["user_id"], self.config["follower_user_id"])
         self.assertEqual(followers[1]["username"], self.config["follower_user_name"])
 
-    def test_post_user_follower(self):
+    def test_user_follower_by_body(self):
         """
-        Tests posting user followers to the API and validating the responses.
+        Tests user followers to the API and validating the responses.
         """
         user_follower = UserFollower(self.config["user_id"],
                                      self.config["limit"])
