@@ -1,18 +1,17 @@
-from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 
 
 class APITweetReplies:
-    def __init__(self, request: APIWrapper):
+    def __init__(self, request):
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_tweet_replies(self):
-        """Requests to retrieve user tweets using the configured URL with parameters and headers.
-
-        Returns:
-            Response: The response from the API containing user tweets.
+    def get_tweet_replies(self, tweet_id):
         """
-        url = f'{self.config["url"]}/tweet/replies?tweet_id=1349129669258448897'
-        print(url)
-        return self._request.get_request(url, headers=self.config["header"])
+        Retrieve user tweets using the configured URL with parameters and headers.
+        tweet_id (str): The ID of the tweet to get replies for.
+        Returns: The response from the API containing user tweets.
+        """
+        return self._request.get_request(f'{self.config["url"]}/'
+                                         f'{self.config["tweet_replies_endpoint"]}?tweet_id={tweet_id}',
+                                         headers=self.config["header"])

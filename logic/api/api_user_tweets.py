@@ -7,13 +7,13 @@ class APIUserTweets:
         self._request = request
         self.config = ConfigProvider.load_config_json()
 
-    def get_user_tweets_by_url(self):
+    def get_user_tweets_by_url(self, username, limit, user_id, include_replies, include_pinned):
         """Requests to retrieve user tweets using the configured URL with parameters and headers.
 
         Returns:
             Response: The response from the API containing user tweets.
         """
-        url = (f"{self.config['url']}/{self.config['end_url_tweets']}"
-               f"?username={self.config['username']}&limit=40&user_id={self.config['user_id']}"
-               f"&include_replies=false&include_pinned=false")
+        url = (f"{self.config['url']}/{self.config['user_tweets_endpoint']}"
+               f"?username={username}&limit={limit}&user_id={user_id}"
+               f"&include_replies={include_replies}&include_pinned={include_pinned}")
         return self._request.get_request(url, headers=self.config["header"])
