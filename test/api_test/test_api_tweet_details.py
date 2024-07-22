@@ -33,6 +33,7 @@ class TestAPITweetDetails(unittest.TestCase):
         # Extract the list of users from the response body
         user = response.data["user"]
 
+        # Assert
         self.assertTrue(response.ok)
         self.assertEqual(expected_tweet_id, response.data['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
@@ -50,6 +51,7 @@ class TestAPITweetDetails(unittest.TestCase):
         tweet_details = APITweetDetails(self.api_request)
         response = tweet_details.get_tweet_details(tweet_id)
 
+        # Assert
         self.assertNotEquals(expected_tweet_id, response.data['tweet_id'])
 
     # ------------------------------------------------------------------------
@@ -65,6 +67,7 @@ class TestAPITweetDetails(unittest.TestCase):
         # Extract the list of users from the response body
         user = response.data["user"]
 
+        # Assert
         self.assertTrue(response.ok)
         self.assertEqual(self.config['my_tweet_id'], response.data['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])

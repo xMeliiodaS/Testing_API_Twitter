@@ -27,6 +27,7 @@ class TestAPIUserTweets(unittest.TestCase):
                                                       self.config["include_replies"],
                                                       self.config["include_pinned"])
 
+        # Assert
         self.assertTrue(response.ok)
 
         # Extract the list of followers from the response body

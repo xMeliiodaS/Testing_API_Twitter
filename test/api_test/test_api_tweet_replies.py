@@ -27,5 +27,7 @@ class TestAPITweetReplies(unittest.TestCase):
         # Extract the list of tweets from the response body
         tweets = response_body["replies"]
         first_tweet = tweets[0]
+
+        # Assert
         self.assertTrue(response.ok)
         self.assertEqual(self.config["replied_tweet_id"], first_tweet["tweet_id"])

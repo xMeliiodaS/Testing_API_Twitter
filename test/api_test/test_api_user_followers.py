@@ -24,6 +24,7 @@ class TestAPIUserFollowers(unittest.TestCase):
         """
         response = self.user_details.get_user_followers(self.config["follower_user_id"], self.config["limit"])
 
+        # Assert
         self.assertTrue(response.ok)
         print(response.data)
         followers = response.data["results"]
@@ -43,6 +44,8 @@ class TestAPIUserFollowers(unittest.TestCase):
 
         # Extract the list of followers from the response body
         followers = response_body["results"]
+
+        # Assert
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_follower_id"], followers[0]["user_id"])
         self.assertEqual(self.config["my_follower_username"], followers[0]["username"])

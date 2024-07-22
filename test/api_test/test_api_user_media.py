@@ -23,6 +23,7 @@ class TestAPITweetDetails(unittest.TestCase):
 
         user_media_list = response.data["results"][0]
 
+        # Assert
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_user_id"], user_media_list["user"]["user_id"])
         self.assertEqual(self.config["my_username"], user_media_list["user"]["username"])
@@ -35,6 +36,7 @@ class TestAPITweetDetails(unittest.TestCase):
 
         user_media_list = response.data["results"][0]
 
+        # Assert
         self.assertTrue(response.ok)
         self.assertNotEqual(self.config["incorrect_user_id"], user_media_list["user"]["user_id"])
         self.assertNotEqual(self.config["incorrect_username"], user_media_list["user"]["username"])
@@ -51,6 +53,7 @@ class TestAPITweetDetails(unittest.TestCase):
 
         user_media_list = response.data["results"][0]
 
+        # Assert
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_user_id"], user_media_list["user"]["user_id"])
         self.assertEqual(self.config["my_username"], user_media_list["user"]["username"])
