@@ -27,8 +27,11 @@ class TestAPITweetReplies(unittest.TestCase):
         response = tweet_replies.get_tweet_replies(self.config["tweet_reply_id"])
 
         # Extract the list of tweets from the response body
-        first_tweet = response.data["replies"][0]
+        tweets = response.data["replies"]
+
+        # Use the helper function to find the tweet
+        found_tweet = APITweetReplies.find_tweet_by_id(tweets, self.config["replied_tweet_id"])
 
         # Assert
         self.assertTrue(response.ok)
-        self.assertEqual(self.config["replied_tweet_id"], first_tweet["tweet_id"])
+        self.assertEqual(self.config["replied_tweet_id"], found_tweet["tweet_id"])

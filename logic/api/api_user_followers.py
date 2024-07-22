@@ -29,3 +29,13 @@ class APIUserFollowers:
         """
         return self._request.post_request(f'{self.config["url"]}{self.ENDPOINT}',
                                           self.config["header"], follower_details)
+
+    @staticmethod
+    def find_follower_by_user_id(followers, user_id):
+        """
+        Helper function to find a follower by user_id.
+        """
+        for follower in followers:
+            if follower["user_id"] == user_id:
+                return follower
+        return None

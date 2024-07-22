@@ -27,10 +27,12 @@ class TestAPIUserFollowers(unittest.TestCase):
 
         # Assert
         self.assertTrue(response.ok)
-        print(response.data)
         followers = response.data["results"]
-        self.assertEqual(followers[1]["user_id"], self.config["actual_user_id"])
-        self.assertEqual(followers[1]["username"], self.config["actual_follower_username"])
+        found_follower = self.user_details.find_follower_by_user_id(followers,
+                                                                    self.config["actual_user_id"])
+
+        self.assertEqual(found_follower["user_id"], self.config["actual_user_id"])
+        self.assertEqual(found_follower["username"], self.config["actual_follower_username"])
 
     # ------------------------------------------------------------------------
 
@@ -47,7 +49,11 @@ class TestAPIUserFollowers(unittest.TestCase):
 
         followers = response.data["results"]
 
+        # Use the helper function to find the follower
+        found_follower = self.user_details.find_follower_by_user_id(followers,
+                                                                    self.config["my_follower_id"])
+
         # Assert
         self.assertTrue(response.ok)
-        self.assertEqual(self.config["my_follower_id"], followers[0]["user_id"])
-        self.assertEqual(self.config["my_follower_username"], followers[0]["username"])
+        self.assertEqual(found_follower["user_id"], self.config["my_follower_id"])
+        self.assertEqual(found_follower["username"], self.config["my_follower_username"])
