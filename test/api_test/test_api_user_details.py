@@ -20,12 +20,12 @@ class TestAPIUserDetails(unittest.TestCase):
         Tests retrieving user details from the API and validating the response.
         """
         user_details = APIUserDetails(self.api_request)
-        user = user_details.get_user_details(self.config["my_username"], self.config["my_user_id"])
-        user_body = user.json()
+        response = user_details.get_user_details(self.config["my_username"], self.config["my_user_id"])
+        response_body = response.json()
 
-        self.assertTrue(user.ok)
-        self.assertEqual(user_body['username'], self.config["my_username"])
-        self.assertEqual(user_body['user_id'], self.config["my_user_id"])
+        self.assertTrue(response.ok)
+        self.assertEqual(response_body['username'], self.config["my_username"])
+        self.assertEqual(response_body['user_id'], self.config["my_user_id"])
 
     def test_post_user_details(self):
         """
@@ -34,8 +34,21 @@ class TestAPIUserDetails(unittest.TestCase):
         user_details = APIUserDetails(self.api_request)
         user_details_body = UserDetails(self.config["my_username"], self.config["my_user_id"])
 
-        user_response = user_details.post_user_details(user_details_body.to_dict())
-        user_body = user_response.json()
+        response = user_details.post_user_details(user_details_body.to_dict())
+        response_body = response.json()
 
-        self.assertTrue(user_response.ok)
-        self.assertEqual(self.config["my_username"], user_body["username"])
+        self.assertTrue(response.ok)
+        self.assertEqual(self.config["my_username"], response_body["username"])
+
+    def test_post_user_details_incorrect(self):
+        """
+        Tests posting user details to the API and validating the response.
+        """
+        user_details = APIUserDetails(self.api_request)
+        user_details_body = UserDetails(self.config["my_username"], self.config["my_user_id"])
+
+        response = user_details.post_user_details(user_details_body.to_dict())
+        response_body = response.json()
+
+        self.assertTrue(response.ok)
+        self.assertNotEqual(self.config["incorrect_username"], response_body["username"])

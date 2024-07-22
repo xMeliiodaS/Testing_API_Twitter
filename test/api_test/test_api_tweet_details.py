@@ -46,9 +46,9 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         tweet_details = APITweetDetails(self.api_request)
         response = tweet_details.get_tweet_details(tweet_id)
-        user_body = response.json()
+        response_body = response.json()
 
-        self.assertNotEquals(expected_tweet_id, user_body['tweet_id'])
+        self.assertNotEquals(expected_tweet_id, response_body['tweet_id'])
 
     def test_post_tweet_details(self):
         """
@@ -57,13 +57,13 @@ class TestAPITweetDetails(unittest.TestCase):
         tweet = TweetDetails(self.config["my_tweet_id"])
         tweet_details = APITweetDetails(self.api_request)
         response = tweet_details.post_tweet_details(tweet.to_dict())
-        user_body = response.json()
+        response_body = response.json()
 
         # Extract the list of users from the response body
-        user = user_body["user"]
+        user = response_body["user"]
 
         self.assertTrue(response.ok)
-        self.assertEqual(self.config['my_tweet_id'], user_body['tweet_id'])
+        self.assertEqual(self.config['my_tweet_id'], response_body['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
 
 

@@ -26,6 +26,17 @@ class TestAPITweetDetails(unittest.TestCase):
         self.assertEqual(self.config["my_user_id"], user_media_list["user"]["user_id"])
         self.assertEqual(self.config["my_username"], user_media_list["user"]["username"])
 
+    def test_get_user_media_incorrect(self):
+        api_user_media = APIUserMedia(self.api_request)
+        response = api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
+        response_body = response.json()
+
+        user_media_list = response_body["results"][0]
+
+        self.assertTrue(response.ok)
+        self.assertNotEqual(self.config["incorrect_user_id"], user_media_list["user"]["user_id"])
+        self.assertNotEqual(self.config["incorrect_username"], user_media_list["user"]["username"])
+
     def test_post_user_media(self):
         """
         Tests posting user media from the API and validating the response.
