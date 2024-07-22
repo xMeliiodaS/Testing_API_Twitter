@@ -15,6 +15,8 @@ class TestAPIUserDetails(unittest.TestCase):
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
 
+    # ------------------------------------------------------------------------
+
     def test_get_user_details(self):
         """
         Tests retrieving user details from the API and validating the response.
@@ -26,6 +28,8 @@ class TestAPIUserDetails(unittest.TestCase):
         self.assertTrue(response.ok)
         self.assertEqual(response_body['username'], self.config["my_username"])
         self.assertEqual(response_body['user_id'], self.config["my_user_id"])
+
+    # ------------------------------------------------------------------------
 
     def test_post_user_details(self):
         """
@@ -39,6 +43,8 @@ class TestAPIUserDetails(unittest.TestCase):
 
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_username"], response_body["username"])
+
+    # ------------------------------------------------------------------------
 
     def test_post_user_details_incorrect(self):
         """

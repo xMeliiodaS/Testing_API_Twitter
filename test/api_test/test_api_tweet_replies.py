@@ -14,6 +14,8 @@ class TestAPITweetReplies(unittest.TestCase):
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
 
+    # ------------------------------------------------------------------------
+
     def test_get_tweet_replies(self):
         """
         Tests retrieving tweet details from the API and validating the response.

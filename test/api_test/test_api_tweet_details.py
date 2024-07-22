@@ -17,6 +17,8 @@ class TestAPITweetDetails(unittest.TestCase):
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
 
+    # ------------------------------------------------------------------------
+
     @parameterized.expand([
         ["1651463042331230208", "1651463042331230208"],
         ["1814982968110194714", "1814982968110194714"]
@@ -36,6 +38,8 @@ class TestAPITweetDetails(unittest.TestCase):
         self.assertEqual(expected_tweet_id, user_body['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
 
+    # ------------------------------------------------------------------------
+
     @parameterized.expand([
         ["1651463042331230208", "8567456774575674374"],
         ["1814982968110194714", "3645735466772864383"]
@@ -49,6 +53,8 @@ class TestAPITweetDetails(unittest.TestCase):
         response_body = response.json()
 
         self.assertNotEquals(expected_tweet_id, response_body['tweet_id'])
+
+    # ------------------------------------------------------------------------
 
     def test_post_tweet_details(self):
         """
@@ -66,6 +72,7 @@ class TestAPITweetDetails(unittest.TestCase):
         self.assertEqual(self.config['my_tweet_id'], response_body['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
 
+    # ------------------------------------------------------------------------
 
 if __name__ == '__main__':
     unittest.main()
