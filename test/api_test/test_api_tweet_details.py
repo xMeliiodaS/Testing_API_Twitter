@@ -36,6 +36,20 @@ class TestAPITweetDetails(unittest.TestCase):
         self.assertEqual(expected_tweet_id, user_body['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
 
+    @parameterized.expand([
+        ["1651463042331230208", "8567456774575674374"],
+        ["1814982968110194714", "3645735466772864383"]
+    ])
+    def test_get_tweet_details_incorrect_data(self, tweet_id, expected_tweet_id):
+        """
+        Tests retrieving tweet details from the API and validating the wrong data.
+        """
+        tweet_details = APITweetDetails(self.api_request)
+        response = tweet_details.get_tweet_details(tweet_id)
+        user_body = response.json()
+
+        self.assertNotEquals(expected_tweet_id, user_body['tweet_id'])
+
     def test_post_tweet_details(self):
         """
         Tests retrieving tweet details from the API and validating the response.
