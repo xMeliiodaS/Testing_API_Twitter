@@ -20,9 +20,8 @@ class TestAPITweetDetails(unittest.TestCase):
     def test_get_user_media(self):
         api_user_media = APIUserMedia(self.api_request)
         response = api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
-        response_body = response.json()
 
-        user_media_list = response_body["results"][0]
+        user_media_list = response.data["results"][0]
 
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_user_id"], user_media_list["user"]["user_id"])
@@ -33,9 +32,8 @@ class TestAPITweetDetails(unittest.TestCase):
     def test_get_user_media_incorrect(self):
         api_user_media = APIUserMedia(self.api_request)
         response = api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
-        response_body = response.json()
 
-        user_media_list = response_body["results"][0]
+        user_media_list = response.data["results"][0]
 
         self.assertTrue(response.ok)
         self.assertNotEqual(self.config["incorrect_user_id"], user_media_list["user"]["user_id"])
@@ -50,9 +48,8 @@ class TestAPITweetDetails(unittest.TestCase):
         user_media = UserMedia(self.config["my_user_id"], self.config["limit"])
         api_user_media = APIUserMedia(self.api_request)
         response = api_user_media.post_user_media(user_media.to_dict())
-        response_body = response.json()
 
-        user_media_list = response_body["results"][0]
+        user_media_list = response.data["results"][0]
 
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_user_id"], user_media_list["user"]["user_id"])

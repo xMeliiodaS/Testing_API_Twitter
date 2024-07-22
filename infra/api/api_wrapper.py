@@ -1,35 +1,40 @@
 import requests
 
+from infra.api.response_wrapper import ResponseWrapper
+
 
 class APIWrapper:
     def __init__(self):
         self._request = None
 
     @staticmethod
-    def get_request(url, headers=None, body=None):
-        """Sends a GET request to the specified URL with optional headers and body.
-
-        Args:
-            url (str): The URL to send the GET request to.
-            headers (dict, optional): The headers to include in the request.
-            body (dict, optional): The body of the request, if any.
-
-        Returns:
-            Response: The response from the GET request.
-        """
-        return requests.get(url, headers=headers, json=body)
+    def get_request(url, headers=None, json=None):
+        try:
+            response = requests.get(
+                url,
+                headers=headers,
+                json=json
+            )
+            response.raise_for_status()
+            return ResponseWrapper(ok=response.ok, status=response.status_code, data=response.json())
+        except requests.exceptions.HTTPError as e:
+            print(f'HTTP error occurred: {e}')
+        except Exception as e:
+            print(f'Other error occurred: {e}')
+        return None
 
     @staticmethod
-    def post_request(url, headers=None, body=None):
-        """
-        Sends a POST request to the specified URL with optional headers and body.
-
-        Args:
-            url (str): The URL to send the POST request to.
-            headers (dict, optional): The headers to include in the request.
-            body (dict, optional): The body of the request, if any.
-
-        Returns:
-            Response: The response from the POST request.
-        """
-        return requests.post(url, headers=headers, json=body)
+    def post_request(url, headers=None, json=None):
+        try:
+            response = requests.post(
+                url,
+                headers=headers,
+                json=json
+            )
+            response.raise_for_status()
+            return ResponseWrapper(ok=response.ok, status=response.status_code, data=response.json())
+        except requests.exceptions.HTTPError as e:
+            print(f'HTTP error occurred: {e}')
+        except Exception as e:
+            print(f'Other error occurred: {e}')
+        return None

@@ -26,12 +26,11 @@ class TestAPIUserTweets(unittest.TestCase):
                                                       self.config["my_user_id"],
                                                       self.config["include_replies"],
                                                       self.config["include_pinned"])
-        response_body = response.json()
 
         self.assertTrue(response.ok)
 
         # Extract the list of followers from the response body
-        first_tweet = response_body["results"][0]
+        first_tweet = response.data["results"][0]
         self.assertIn("tweet_id", first_tweet)
         self.assertEqual(first_tweet["tweet_id"], self.config["my_first_tweet_id"])
 

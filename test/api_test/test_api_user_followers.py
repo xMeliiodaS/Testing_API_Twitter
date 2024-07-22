@@ -23,11 +23,10 @@ class TestAPIUserFollowers(unittest.TestCase):
         Tests getting user followers to the API and validating the responses.
         """
         response = self.user_details.get_user_followers(self.config["follower_user_id"], self.config["limit"])
-        response_body = response.json()
 
         self.assertTrue(response.ok)
-
-        followers = response_body["results"]
+        print(response.data)
+        followers = response.data["results"]
         self.assertEqual(followers[1]["user_id"], self.config["actual_user_id"])
         self.assertEqual(followers[1]["username"], self.config["actual_follower_username"])
 
@@ -40,7 +39,7 @@ class TestAPIUserFollowers(unittest.TestCase):
         user_follower = UserFollower(self.config["my_user_id"],
                                      self.config["limit"])
         response = self.user_details.post_user_followers(user_follower.to_dict())
-        response_body = response.json()
+        response_body = response.data
 
         # Extract the list of followers from the response body
         followers = response_body["results"]

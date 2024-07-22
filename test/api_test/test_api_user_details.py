@@ -23,7 +23,7 @@ class TestAPIUserDetails(unittest.TestCase):
         """
         user_details = APIUserDetails(self.api_request)
         response = user_details.get_user_details(self.config["my_username"], self.config["my_user_id"])
-        response_body = response.json()
+        response_body = response.data
 
         self.assertTrue(response.ok)
         self.assertEqual(response_body['username'], self.config["my_username"])
@@ -39,7 +39,7 @@ class TestAPIUserDetails(unittest.TestCase):
         user_details_body = UserDetails(self.config["my_username"], self.config["my_user_id"])
 
         response = user_details.post_user_details(user_details_body.to_dict())
-        response_body = response.json()
+        response_body = response.data
 
         self.assertTrue(response.ok)
         self.assertEqual(self.config["my_username"], response_body["username"])
@@ -54,7 +54,7 @@ class TestAPIUserDetails(unittest.TestCase):
         user_details_body = UserDetails(self.config["my_username"], self.config["my_user_id"])
 
         response = user_details.post_user_details(user_details_body.to_dict())
-        response_body = response.json()
+        response_body = response.data
 
         self.assertTrue(response.ok)
         self.assertNotEqual(self.config["incorrect_username"], response_body["username"])

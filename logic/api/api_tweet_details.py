@@ -2,6 +2,9 @@ from infra.browser.configure_provider import ConfigProvider
 
 
 class APITweetDetails:
+    ENDPOINT = "/tweet/details"
+    TWEET_PARAM = '?tweet_id='
+
     def __init__(self, request):
         self._request = request
         self.config = ConfigProvider.load_config_json()
@@ -12,7 +15,7 @@ class APITweetDetails:
         tweet_id (str): The ID of the tweet to retrieve.
         Returns: The response from the API containing tweet details.
         """
-        url = f"{self.config['url']}/{self.config['tweet_details_endpoint']}?tweet_id={tweet_id}"
+        url = f"{self.config['url']}{self.ENDPOINT}{self.TWEET_PARAM}{tweet_id}"
         return self._request.get_request(url, headers=self.config["header"])
 
     def post_tweet_details(self, follower_details):
@@ -21,5 +24,5 @@ class APITweetDetails:
         follower_details (dict): The details of the follower to post.
         Returns: The response from the API after posting the follower details.
         """
-        return self._request.post_request(f'{self.config["url"]}/{self.config["tweet_details_endpoint"]}',
+        return self._request.post_request(f'{self.config["url"]}{self.ENDPOINT}',
                                           self.config["header"], follower_details)

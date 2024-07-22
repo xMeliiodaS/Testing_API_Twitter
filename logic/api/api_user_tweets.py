@@ -3,6 +3,13 @@ from infra.browser.configure_provider import ConfigProvider
 
 
 class APIUserTweets:
+    ENDPOINT = '/user/tweets'
+    USERNAME_PARAM = '?username='
+    USER_ID_PARAM = '&user_id='
+    LIMIT = '&limit='
+    INCLUDE_REPLIES = '&include_replies='
+    INCLUDE_PINNED = '&include_pinned='
+
     def __init__(self, request: APIWrapper):
         self._request = request
         self.config = ConfigProvider.load_config_json()
@@ -17,7 +24,7 @@ class APIUserTweets:
         include_pinned (bool): Whether to include pinned tweets.
         Returns: The response from the API containing user tweets.
         """
-        url = (f"{self.config['url']}/{self.config['user_tweets_endpoint']}"
-               f"?username={username}&limit={limit}&user_id={user_id}"
-               f"&include_replies={include_replies}&include_pinned={include_pinned}")
+        url = (f"{self.config['url']}{self.ENDPOINT}"
+               f"{self.USERNAME_PARAM}{username}{self.LIMIT}{limit}{self.USER_ID_PARAM}{user_id}"
+               f"{self.INCLUDE_REPLIES}{include_replies}{self.INCLUDE_PINNED}{include_pinned}")
         return self._request.get_request(url, headers=self.config["header"])

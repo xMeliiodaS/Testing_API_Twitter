@@ -22,7 +22,7 @@ class TestAPITweetReplies(unittest.TestCase):
         """
         tweet_replies = APITweetReplies(self.api_request)
         response = tweet_replies.get_tweet_replies(self.config["tweet_reply_id"])
-        response_body = response.json()
+        response_body = response.data
 
         # Extract the list of tweets from the response body
         tweets = response_body["replies"]
