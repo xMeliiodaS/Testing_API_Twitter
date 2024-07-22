@@ -20,13 +20,14 @@ class TestAPITweetReplies(unittest.TestCase):
         """
         Tests retrieving tweet details from the API and validating the response.
         """
+        # Arrange
         tweet_replies = APITweetReplies(self.api_request)
+
+        # Act
         response = tweet_replies.get_tweet_replies(self.config["tweet_reply_id"])
-        response_body = response.data
 
         # Extract the list of tweets from the response body
-        tweets = response_body["replies"]
-        first_tweet = tweets[0]
+        first_tweet = response.data["replies"][0]
 
         # Assert
         self.assertTrue(response.ok)

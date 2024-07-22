@@ -14,13 +14,13 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
+        self.api_user_media = APIUserMedia(self.api_request)
 
     # ------------------------------------------------------------------------
 
     def test_get_user_media(self):
-        api_user_media = APIUserMedia(self.api_request)
-        response = api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
-
+        # Act
+        response = self.api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
         user_media_list = response.data["results"][0]
 
         # Assert
@@ -31,9 +31,8 @@ class TestAPITweetDetails(unittest.TestCase):
     # ------------------------------------------------------------------------
 
     def test_get_user_media_incorrect(self):
-        api_user_media = APIUserMedia(self.api_request)
-        response = api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
-
+        # Act
+        response = self.api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
         user_media_list = response.data["results"][0]
 
         # Assert
@@ -47,10 +46,11 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         Tests posting user media from the API and validating the response.
         """
+        # Arrange
         user_media = UserMedia(self.config["my_user_id"], self.config["limit"])
-        api_user_media = APIUserMedia(self.api_request)
-        response = api_user_media.post_user_media(user_media.to_dict())
 
+        # Act
+        response = self.api_user_media.post_user_media(user_media.to_dict())
         user_media_list = response.data["results"][0]
 
         # Assert

@@ -14,6 +14,7 @@ class TestAPIUserDetails(unittest.TestCase):
         """
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
+        self.user_details = APIUserDetails(self.api_request)
 
     # ------------------------------------------------------------------------
 
@@ -21,14 +22,14 @@ class TestAPIUserDetails(unittest.TestCase):
         """
         Tests retrieving user details from the API and validating the response.
         """
-        user_details = APIUserDetails(self.api_request)
-        response = user_details.get_user_details(self.config["my_username"], self.config["my_user_id"])
-        response_body = response.data
+        # Act
+        response = self.user_details.get_user_details(self.config["my_username"],
+                                                      self.config["my_user_id"])
 
         # Assert
         self.assertTrue(response.ok)
-        self.assertEqual(response_body['username'], self.config["my_username"])
-        self.assertEqual(response_body['user_id'], self.config["my_user_id"])
+        self.assertEqual(response.data['username'], self.config["my_username"])
+        self.assertEqual(response.data['user_id'], self.config["my_user_id"])
 
     # ------------------------------------------------------------------------
 
@@ -36,15 +37,15 @@ class TestAPIUserDetails(unittest.TestCase):
         """
         Tests posting user details to the API and validating the response.
         """
-        user_details = APIUserDetails(self.api_request)
+        # Arrange
         user_details_body = UserDetails(self.config["my_username"], self.config["my_user_id"])
 
-        response = user_details.post_user_details(user_details_body.to_dict())
-        response_body = response.data
+        # Act
+        response = self.user_details.post_user_details(user_details_body.to_dict())
 
         # Assert
         self.assertTrue(response.ok)
-        self.assertEqual(self.config["my_username"], response_body["username"])
+        self.assertEqual(self.config["my_username"], response.data["username"])
 
     # ------------------------------------------------------------------------
 
@@ -52,12 +53,12 @@ class TestAPIUserDetails(unittest.TestCase):
         """
         Tests posting user details to the API and validating the response.
         """
-        user_details = APIUserDetails(self.api_request)
+        # Arrange
         user_details_body = UserDetails(self.config["my_username"], self.config["my_user_id"])
 
-        response = user_details.post_user_details(user_details_body.to_dict())
-        response_body = response.data
+        # Act
+        response = self.user_details.post_user_details(user_details_body.to_dict())
 
         # Assert
         self.assertTrue(response.ok)
-        self.assertNotEqual(self.config["incorrect_username"], response_body["username"])
+        self.assertNotEqual(self.config["incorrect_username"], response.data["username"])

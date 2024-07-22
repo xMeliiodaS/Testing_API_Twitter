@@ -16,6 +16,7 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         self.api_request = APIWrapper()
         self.config = ConfigProvider.load_config_json()
+        self.tweet_details = APITweetDetails(self.api_request)
 
     # ------------------------------------------------------------------------
 
@@ -27,10 +28,9 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         Tests retrieving tweet details from the API and validating the response.
         """
-        tweet_details = APITweetDetails(self.api_request)
-        response = tweet_details.get_tweet_details(tweet_id)
+        # Act
+        response = self.tweet_details.get_tweet_details(tweet_id)
 
-        # Extract the list of users from the response body
         user = response.data["user"]
 
         # Assert
@@ -48,8 +48,8 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         Tests retrieving tweet details from the API and validating the wrong data.
         """
-        tweet_details = APITweetDetails(self.api_request)
-        response = tweet_details.get_tweet_details(tweet_id)
+        # Act
+        response = self.tweet_details.get_tweet_details(tweet_id)
 
         # Assert
         self.assertNotEquals(expected_tweet_id, response.data['tweet_id'])
@@ -60,11 +60,12 @@ class TestAPITweetDetails(unittest.TestCase):
         """
         Tests retrieving tweet details from the API and validating the response.
         """
+        # Arrange
         tweet = TweetDetails(self.config["my_tweet_id"])
-        tweet_details = APITweetDetails(self.api_request)
-        response = tweet_details.post_tweet_details(tweet.to_dict())
 
-        # Extract the list of users from the response body
+        # Act
+        response = self.tweet_details.post_tweet_details(tweet.to_dict())
+
         user = response.data["user"]
 
         # Assert
