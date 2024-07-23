@@ -72,6 +72,7 @@ class TestAPITweetDetails(unittest.TestCase):
         self.assertTrue(response.ok)
         self.assertEqual(self.config['my_tweet_id'], response.data['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
+        self.assertEqual(self.config["my_tweet_text"], response.data['text'])
 
     # ------------------------------------------------------------------------
 
