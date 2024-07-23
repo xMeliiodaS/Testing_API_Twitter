@@ -5,12 +5,6 @@
     "Content-Type": "application/json"
   },
   "url": "https://twitter154.p.rapidapi.com",
-  "tweet_details_endpoint": "tweet/details",
-  "tweet_replies_endpoint": "tweet/replies",
-  "user_details_endpoint": "user/details",
-  "user_tweets_endpoint": "user/tweets",
-  "user_followers_endpoint": "user/followers",
-  "user_medias_endpoint": "user/medias",
   "username": "omarmhaimdat",
   "user_id": "96479162",
   "follower_user_id": "876463068653510656",

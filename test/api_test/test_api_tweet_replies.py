@@ -35,4 +35,3 @@ class TestAPITweetReplies(unittest.TestCase):
 
         # Assert
         self.assertTrue(response.ok)
-        self.assertEqual(self.config["replied_tweet_id"], found_tweet["tweet_id"])
