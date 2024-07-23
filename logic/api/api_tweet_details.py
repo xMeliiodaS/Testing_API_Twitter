@@ -1,9 +1,9 @@
 from infra.browser.configure_provider import ConfigProvider
+from logic.api.entities.tweet_details import TweetDetails
 
 
 class APITweetDetails:
-    ENDPOINT = "/tweet/details"
-    TWEET_PARAM = '?tweet_id='
+    ENDPOINT = "/tweet/details?"
 
     def __init__(self, request):
         self._request = request
@@ -15,7 +15,8 @@ class APITweetDetails:
         tweet_id (str): The ID of the tweet to retrieve.
         Returns: The response from the API containing tweet details.
         """
-        url = f"{self.config['url']}{self.ENDPOINT}{self.TWEET_PARAM}{tweet_id}"
+        tweet_detail_param = TweetDetails(tweet_id).__str__()
+        url = f"{self.config['url']}{self.ENDPOINT}{tweet_detail_param}"
         return self._request.get_request(url, headers=self.config["header"])
 
     def post_tweet_details(self, follower_details):

@@ -18,3 +18,6 @@ class TweetDetails:
         return {
             "tweet_id": self._tweet_id,
         }
+
+    def __str__(self):
+        return f"tweet_id={self.tweet_id}"
