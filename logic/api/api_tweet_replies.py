@@ -3,6 +3,7 @@ from infra.browser.configure_provider import ConfigProvider
 
 class APITweetReplies:
     ENDPOINT = 'tweet/replies'
+    TWEET_ID = '?tweet_id='
 
     def __init__(self, request):
         self._request = request
@@ -15,5 +16,5 @@ class APITweetReplies:
         Returns: The response from the API containing user tweets.
         """
         return self._request.get_request(f'{self.config["url"]}/'
-                                         f'{self.ENDPOINT}?tweet_id={tweet_id}',
+                                         f'{self.ENDPOINT}{self.TWEET_ID}{tweet_id}',
                                          headers=self.config["header"])
