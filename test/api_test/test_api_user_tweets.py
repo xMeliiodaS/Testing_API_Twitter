@@ -3,6 +3,7 @@ import unittest
 from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_user_tweets import APIUserTweets
+from logic.api.utils import Utils
 
 
 class TestAPIUserTweets(unittest.TestCase):
@@ -30,7 +31,7 @@ class TestAPIUserTweets(unittest.TestCase):
                                                       self.config["include_pinned"])
 
         tweets = response.data["results"]
-        found_tweet = APIUserTweets.find_tweet_by_id(tweets, self.config["my_first_tweet_id"])
+        found_tweet = Utils.find_tweet_by_id(tweets, self.config["my_first_tweet_id"])
 
         # Assert
         self.assertTrue(response.ok)

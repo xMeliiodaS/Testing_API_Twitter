@@ -3,6 +3,7 @@ import unittest
 from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_tweet_replies import APITweetReplies
+from logic.api.utils import Utils
 
 
 class TestAPITweetReplies(unittest.TestCase):
@@ -30,7 +31,7 @@ class TestAPITweetReplies(unittest.TestCase):
         tweets = response.data["replies"]
 
         # Use the helper function to find the tweet
-        found_tweet = APITweetReplies.find_tweet_by_id(tweets, self.config["replied_tweet_id"])
+        found_tweet = Utils.find_tweet_by_id(tweets, self.config["replied_tweet_id"])
 
         # Assert
         self.assertTrue(response.ok)

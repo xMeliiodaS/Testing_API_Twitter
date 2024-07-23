@@ -29,12 +29,3 @@ class APIUserMedia:
         return self._request.post_request(f'{self.config["url"]}{self.ENDPOINT}',
                                           self.config["header"], user_media_body)
 
-    @staticmethod
-    def find_user_media_by_user_id(media_list, user_id):
-        """
-        Finds and returns a user media item from the list by user_id.
-        """
-        for media in media_list:
-            if media["user"]["user_id"] == user_id:
-                return media
-        return None

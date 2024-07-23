@@ -29,12 +29,3 @@ class APIUserTweets:
                f"{self.INCLUDE_REPLIES}{include_replies}{self.INCLUDE_PINNED}{include_pinned}")
         return self._request.get_request(url, headers=self.config["header"])
 
-    @staticmethod
-    def find_tweet_by_id(tweets, tweet_id):
-        """
-        Finds and returns a tweet from the list by user_id.
-        """
-        for tweet in tweets:
-            if tweet["tweet_id"] == tweet_id:
-                return tweet
-        return None

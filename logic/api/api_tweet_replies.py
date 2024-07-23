@@ -17,20 +17,3 @@ class APITweetReplies:
         return self._request.get_request(f'{self.config["url"]}/'
                                          f'{self.ENDPOINT}?tweet_id={tweet_id}',
                                          headers=self.config["header"])
-
-    @staticmethod
-    def find_tweet_by_id(tweets, tweet_id):
-        """
-        Finds a tweet by its ID in a list of tweets.
-
-        Args:
-            tweets (list): The list of tweets to search through.
-            tweet_id (str): The ID of the tweet to find.
-
-        Returns:
-            dict: The tweet with the matching ID, or None if not found.
-        """
-        for tweet in tweets:
-            if tweet["tweet_id"] == tweet_id:
-                return tweet
-        return None

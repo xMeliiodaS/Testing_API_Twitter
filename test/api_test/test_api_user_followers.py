@@ -4,6 +4,7 @@ from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_user_followers import APIUserFollowers
 from logic.api.entities.user_follower import UserFollower
+from logic.api.utils import Utils
 
 
 class TestAPIUserFollowers(unittest.TestCase):
@@ -28,8 +29,8 @@ class TestAPIUserFollowers(unittest.TestCase):
         # Assert
         self.assertTrue(response.ok)
         followers = response.data["results"]
-        found_follower = self.user_details.find_follower_by_user_id(followers,
-                                                                    self.config["actual_user_id"])
+        found_follower = Utils.find_follower_by_user_id(followers,
+                                                        self.config["actual_user_id"])
 
         self.assertEqual(found_follower["user_id"], self.config["actual_user_id"])
         self.assertEqual(found_follower["username"], self.config["actual_follower_username"])
@@ -50,8 +51,8 @@ class TestAPIUserFollowers(unittest.TestCase):
         followers = response.data["results"]
 
         # Use the helper function to find the follower
-        found_follower = self.user_details.find_follower_by_user_id(followers,
-                                                                    self.config["my_follower_id"])
+        found_follower = Utils.find_follower_by_user_id(followers,
+                                                        self.config["my_follower_id"])
 
         # Assert
         self.assertTrue(response.ok)

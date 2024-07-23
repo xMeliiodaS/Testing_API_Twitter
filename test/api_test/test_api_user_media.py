@@ -4,6 +4,7 @@ from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_user_media import APIUserMedia
 from logic.api.entities.user_media import UserMedia
+from logic.api.utils import Utils
 
 
 class TestAPITweetDetails(unittest.TestCase):
@@ -25,8 +26,8 @@ class TestAPITweetDetails(unittest.TestCase):
         # Act
         response = self.api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
         user_media_list = response.data["results"]
-        found_media = self.api_user_media.find_user_media_by_user_id(user_media_list,
-                                                                     self.config["my_user_id"])
+        found_media = Utils.find_user_media_by_user_id(user_media_list,
+                                                       self.config["my_user_id"])
 
         # Assert
         self.assertTrue(response.ok)
@@ -42,8 +43,8 @@ class TestAPITweetDetails(unittest.TestCase):
         # Act
         response = self.api_user_media.get_user_media(self.config["my_user_id"], self.config["limit"])
         user_media_list = response.data["results"]
-        found_media = self.api_user_media.find_user_media_by_user_id(user_media_list,
-                                                                     self.config["my_user_id"])
+        found_media = Utils.find_user_media_by_user_id(user_media_list,
+                                                       self.config["my_user_id"])
 
         # Assert
         self.assertTrue(response.ok)
@@ -62,8 +63,8 @@ class TestAPITweetDetails(unittest.TestCase):
         # Act
         response = self.api_user_media.post_user_media(user_media.to_dict())
         user_media_list = response.data["results"]
-        found_media = self.api_user_media.find_user_media_by_user_id(user_media_list,
-                                                                     self.config["my_user_id"])
+        found_media = Utils.find_user_media_by_user_id(user_media_list,
+                                                       self.config["my_user_id"])
 
         # Assert
         self.assertTrue(response.ok)
