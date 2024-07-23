@@ -21,10 +21,10 @@ class TestAPITweetDetails(unittest.TestCase):
     # ------------------------------------------------------------------------
 
     @parameterized.expand([
-        ["1651463042331230208", "1651463042331230208"],
-        ["1814982968110194714", "1814982968110194714"]
+        ["1651463042331230208"],
+        ["1814982968110194714"]
     ])
-    def test_get_tweet_details(self, tweet_id, expected_tweet_id):
+    def test_get_tweet_details(self, tweet_id):
         """
         Tests retrieving tweet details from the API and validating the response.
         """
@@ -35,7 +35,7 @@ class TestAPITweetDetails(unittest.TestCase):
 
         # Assert
         self.assertTrue(response.ok)
-        self.assertEqual(expected_tweet_id, response.data['tweet_id'])
+        self.assertEqual(tweet_id, response.data['tweet_id'])
         self.assertEqual(self.config["my_username"], user['username'])
 
     # ------------------------------------------------------------------------
