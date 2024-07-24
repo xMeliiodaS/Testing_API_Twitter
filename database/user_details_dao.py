@@ -1,26 +1,26 @@
-class UserDAO:
+class UserDetailsDAO:
     """
-    Data Access Object Class
+    A Class to the User Details Data Access Object
     """
     def __init__(self, db):
         self.db = db
 
     def create_table(self):
-        query = '''
-        CREATE TABLE IF NOT EXISTS users (
-        user_id INTEGER PRIMARY KEY,
-        username TEXT NOT NULL,
-        name TEXT NOT NULL,
-        follower_count INTEGER,
-        following_count INTEGER,
-        )'''
-
+        query = """
+        CREATE TABLE IF NOT EXISTS Users_details (
+            user_id INTEGER PRIMARY KEY,
+            username TEXT NOT NULL,
+            name TEXT NOT NULL,
+            follower_count INTEGER,
+            following_count INTEGER
+        );
+        """
         self.db.execute_query(query)
 
     def add_user(self, user):
         query = '''
         INSERT INTO users (user_id, username, name, follower_count, following_count)
-        VALUES (?, ?, ?, ?, ?, ?);
+        VALUES (?, ?, ?, ?, ?);
         '''
 
         params = (user['user_id'], user['username'], user['name'],
