@@ -31,4 +31,3 @@ class Database:
         """Close the database connection."""
         if self.conn:
             self.conn.close()
-            print("Connection to SQLite database closed")

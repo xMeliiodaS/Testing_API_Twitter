@@ -3,7 +3,7 @@ import unittest
 from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_tweet_replies import APITweetReplies
-from logic.api.utils import Utils
+from logic.api.utils.utils import Utils
 
 
 class TestAPITweetReplies(unittest.TestCase):

@@ -1,4 +1,7 @@
+from database.database import Database
+from database.user_dao import UserDAO
 from infra.browser.configure_provider import ConfigProvider
+from logic.api.utils.db_utils import DBUtils
 
 
 class APIUserDetails:
@@ -9,6 +12,7 @@ class APIUserDetails:
     def __init__(self, request):
         self._request = request
         self.config = ConfigProvider.load_config_json()
+        self.db_path = self.config['db_path']
 
     def get_user_details(self, username, user_id):
         """
@@ -19,7 +23,17 @@ class APIUserDetails:
         """
         url = (f"{self.config['url']}{self.ENDPOINT}"
                f"{self.USERNAME_PARAM}{username}{self.USER_ID_PARAM}{user_id}")
-        return self._request.get_request(url, headers=self.config["header"])
+        response = self._request.get_request(url, headers=self.config["header"])
+
+        if response.ok:
+            user_details = response.data
+            db = DBUtils.initialize_database(self.db_path)
+            DBUtils.add_user_to_db(db, user_details)
+            user_dao = UserDAO(db)
+            user_dao.print_user(user_id)
+            db.close_connection()
+
+        return response
 
     def post_user_details(self, user_name_details):
         """

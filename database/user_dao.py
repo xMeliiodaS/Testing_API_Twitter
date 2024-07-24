@@ -7,7 +7,7 @@ class UserDAO:
 
     def create_table(self):
         query = """
-        CREATE TABLE IF NOT EXISTS Users_details (
+        CREATE TABLE IF NOT EXISTS users (
             user_id INTEGER PRIMARY KEY,
             username TEXT NOT NULL,
             name TEXT NOT NULL,
@@ -32,9 +32,13 @@ class UserDAO:
         SELECT * FROM users WHERE user_id = ?
         '''
         cursor = self.db.execute_query(query, (user_id,))
+        row = cursor.fetchone()
 
-        # Fetch one row
-        return cursor.fetchone()
+        # Convert the tuple to a dictionary
+        if row:
+            columns = [column[0] for column in cursor.description]
+            return dict(zip(columns, row))
+        return None
 
     def update_user(self, user):
         query = '''

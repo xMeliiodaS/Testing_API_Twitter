@@ -4,7 +4,7 @@ from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_user_followers import APIUserFollowers
 from logic.api.entities.user_follower import UserFollower
-from logic.api.utils import Utils
+from logic.api.utils.utils import Utils
 
 
 class TestAPIUserFollowers(unittest.TestCase):

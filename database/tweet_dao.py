@@ -23,8 +23,15 @@ class TweetDAO:
 
     def get_tweets(self, tweet_id):
         query = "SELECT * FROM Tweets_details WHERE tweet_id = ?;"
+
         cursor = self.db.execute_query(query, (tweet_id,))
-        return cursor.fetchone()
+        row = cursor.fetchone()
+
+        # Convert the tuple to a dictionary
+        if row:
+            columns = [column[0] for column in cursor.description]
+            return dict(zip(columns, row))
+        return None
 
     def update_tweet(self, tweet):
         query = """

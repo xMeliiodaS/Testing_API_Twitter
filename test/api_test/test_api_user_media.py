@@ -4,7 +4,7 @@ from infra.api.api_wrapper import APIWrapper
 from infra.browser.configure_provider import ConfigProvider
 from logic.api.api_user_media import APIUserMedia
 from logic.api.entities.user_media import UserMedia
-from logic.api.utils import Utils
+from logic.api.utils.utils import Utils
 
 
 class TestAPITweetDetails(unittest.TestCase):

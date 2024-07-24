@@ -4,6 +4,7 @@
 	"x-rapidapi-host": "twitter154.p.rapidapi.com",
     "Content-Type": "application/json"
   },
+  "db_path": "twitter_api.db",
   "url": "https://twitter154.p.rapidapi.com",
   "username": "omarmhaimdat",
   "user_id": "96479162",

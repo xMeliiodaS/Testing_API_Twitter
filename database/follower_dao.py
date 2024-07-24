@@ -26,8 +26,15 @@ class FollowerDAO:
 
     def get_followers(self, user_id, follower_user_id):
         query = "SELECT * FROM Follower WHERE user_id = ? AND follower_user_id = ?;"
+
         cursor = self.db.execute_query(query, (user_id, follower_user_id))
-        return cursor.fetchone()
+        row = cursor.fetchone()
+
+        # Convert the tuple to a dictionary
+        if row:
+            columns = [column[0] for column in cursor.description]
+            return dict(zip(columns, row))
+        return None
 
     def update_follower(self, follower):
         query = """
