@@ -13,25 +13,27 @@ class TweetDAO:
         """
         self.db.execute_query(query)
 
-    def add_tweet(self, tweet_id, user_id, text):
+    def add_tweet(self, tweet):
         query = """
         INSERT INTO Tweets_details (tweet_id, user_id, text)
-        VALUES (?, ?, ?, ?);
+        VALUES (?, ?, ?);
         """
-        self.db.execute_query(query, (tweet_id, user_id, text))
+        params = (tweet['tweet_id'], tweet['user_id'], tweet['text'])
+        self.db.execute_query(query, params)
 
-    def get_tweets_by_user_id(self, user_id):
-        query = "SELECT tweet_id, text, creation_date FROM Tweets_details WHERE user_id = ?;"
-        cursor = self.db.execute_query(query, (user_id,))
-        return cursor.fetchall()
+    def get_tweets(self, tweet_id):
+        query = "SELECT * FROM Tweets_details WHERE tweet_id = ?;"
+        cursor = self.db.execute_query(query, (tweet_id,))
+        return cursor.fetchone()
 
-    def update_tweet(self, tweet_id, text):
+    def update_tweet(self, tweet):
         query = """
         UPDATE Tweets_details
         SET text = ?
         WHERE tweet_id = ?;
         """
-        self.db.execute_query(query, (text, tweet_id))
+        params = (tweet['text'], tweet['tweet_id'])
+        self.db.execute_query(query, params)
 
     def delete_tweet(self, tweet_id):
         query = "DELETE FROM Tweets_details WHERE tweet_id = ?;"

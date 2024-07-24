@@ -1,4 +1,4 @@
-class UserDetailsDAO:
+class UserDAO:
     """
     A Class to the User Details Data Access Object
     """

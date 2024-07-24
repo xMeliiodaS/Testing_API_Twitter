@@ -16,25 +16,29 @@ class FollowerDAO:
         """
         self.db.execute_query(query)
 
-    def add_follower(self, user_id, follower_user_id, follower_count, following_count, name):
+    def add_follower(self, follower):
         query = """
         INSERT INTO Follower (user_id, follower_user_id, follower_count, following_count, name)
         VALUES (?, ?, ?, ?, ?);
         """
-        self.db.execute_query(query, (user_id, follower_user_id, follower_count, following_count, name))
+        params = (follower['user_id'], follower['follower_user_id'], follower['follower_count'],
+                  follower['following_count'], follower['name'])
+        self.db.execute_query(query, params)
 
-    def get_followers(self, user_id):
-        query = "SELECT follower_user_id, follower_count, following_count, name FROM Follower WHERE user_id = ?;"
-        cursor = self.db.execute_query(query, (user_id,))
-        return cursor.fetchall()
+    def get_followers(self, user_id, follower_user_id):
+        query = "SELECT * FROM Follower WHERE user_id = ? AND follower_user_id = ?;"
+        cursor = self.db.execute_query(query, (user_id, follower_user_id))
+        return cursor.fetchone()
 
-    def update_follower(self, user_id, follower_user_id, follower_count, following_count, name):
+    def update_follower(self, follower):
         query = """
         UPDATE Follower
         SET follower_count = ?, following_count = ?, name = ?
         WHERE user_id = ? AND follower_user_id = ?;
         """
-        self.db.execute_query(query, (follower_count, following_count, name, user_id, follower_user_id))
+        params = (follower['follower_count'], follower['following_count'], follower['name'],
+                  follower['user_id'], follower['follower_user_id'])
+        self.db.execute_query(query, params)
 
     def delete_follower(self, user_id, follower_user_id):
         query = "DELETE FROM Follower WHERE user_id = ? AND follower_user_id = ?;"
