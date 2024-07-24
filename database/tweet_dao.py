@@ -38,3 +38,19 @@ class TweetDAO:
     def delete_tweet(self, tweet_id):
         query = "DELETE FROM Tweets_details WHERE tweet_id = ?;"
         self.db.execute_query(query, (tweet_id,))
+
+    def print_tweet(self, tweet_id):
+        tweet = self.get_tweets(tweet_id)
+        if tweet:
+            print(f"Tweet ID: {tweet['tweet_id']}")
+            print(f"User ID: {tweet['user_id']}")
+            print(f"Text: {tweet['text']}")
+        else:
+            print("Tweet not found")
+
+    def print_all_tweets(self):
+        query = "SELECT * FROM Tweets_details"
+        cursor = self.db.execute_query(query)
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)

@@ -50,3 +50,21 @@ class UserDAO:
     def delete_user(self, user_id):
         query = "DELETE FROM users WHERE user_id = ?;"
         self.db.execute_query(query, (user_id,))
+
+    def print_user(self, user_id):
+        user = self.get_user(user_id)
+        if user:
+            print(f"User ID: {user['user_id']}")
+            print(f"Username: {user['username']}")
+            print(f"Name: {user['name']}")
+            print(f"Follower Count: {user['follower_count']}")
+            print(f"Following Count: {user['following_count']}")
+        else:
+            print("User not found")
+
+    def print_all_users(self):
+        query = "SELECT * FROM users"
+        cursor = self.db.execute_query(query)
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
